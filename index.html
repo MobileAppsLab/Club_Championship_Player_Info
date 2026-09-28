@@ -148,7 +148,16 @@ function gm(p,k){return p[k]??""}
 function renderMaster(){
   if(!DATA)return;
   const q=document.getElementById("search").value.trim().toLowerCase();
-  const arr=DATA.master.filter(p=>(`${gm(p,"LAST")} ${gm(p,"FIRST")}`).toLowerCase().includes(q));
+  const arr=DATA.master.filter(p=>{
+  const searchText = [
+    gm(p,"LAST"),
+    gm(p,"FIRST"),
+    gm(p,"TEE / DIVISION"),
+    gm(p,"CLUB")
+  ].join(" ").toLowerCase();
+
+  return searchText.includes(q);
+});
   document.getElementById("summary").textContent=
     `${arr.length} player${arr.length===1?"":"s"} — sorted by last name`;
 
