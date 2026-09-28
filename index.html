@@ -232,8 +232,13 @@ function renderSimple(id){
 }
 
 function playerCard(id,r){
- const name=id==="putting"?String(r[0]??""):`${r[0]??""}, ${r[1]??""}`;
- let items=id==="horserace"?[["CRS HDCP",r[2]]]:
+ const name=id==="putting"
+  ? String(r[0]??"")
+  : id==="horserace"
+    ? `${r[0]??""}, ${r[1]??""} — CRS HCP: ${r[2]??""}`
+    : `${r[0]??""}, ${r[1]??""}`;
+
+let items=id==="horserace"?[]:
    id==="scoreboard"?[["HDCP",r[2]],["TEE / DIVISION",r[3]]]:
    id==="dinner"?[["Guest",r[2]],["Paid",r[3]],["Scrip",r[4]],["Notes",r[5]]]:
    [["Round #1",r[2]],["Round #2",r[3]],["Lowest Score",r[4]],["Rank",r[5]]];
